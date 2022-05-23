@@ -8,7 +8,7 @@ Author: Anita Brzoza
   - [Quality control and filtering](#quality-control-and-filtering)
   - [Mapping to the reference genome](#mapping-to-the-reference-genome)
   - [Detection and annotation of SNPs](#detection-and-annotation-of-snps)
-  - [Conclusions](#conclusion)
+  - [Conclusions](#conclusions)
 
 ### Introduction
 
