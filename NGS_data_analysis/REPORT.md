@@ -1,7 +1,7 @@
-# Detection of single nucleotide polymorphisms in _Saccharomyces cerevisiae_
+## Detection of single nucleotide polymorphisms in _Saccharomyces cerevisiae_
 Author: Anita Brzoza
 
-## Table of contents
+### Table of contents
 
   - [Introduction](#introduction)
   - [Data downloading](#data-downloading)
@@ -10,14 +10,14 @@ Author: Anita Brzoza
   - [Detection and annotation of SNPs](#detection-and-annotation-of-snps)
   - [Conclusion](#conclusion)
 
-## Introduction
+### Introduction
 
-## Data downloading 
+### Data downloading 
 
-## Quality control and filtering
+### Quality control and filtering
 
-## Mapping to the reference genome
+### Mapping to the reference genome
 
-## Detection and annotation of SNPs
+### Detection and annotation of SNPs
 
-## Conclusion
+### Conclusion
