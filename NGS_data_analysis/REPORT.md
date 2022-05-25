@@ -34,5 +34,5 @@ The phenotypic variation is defined by many differernt types of variants, starti
 
 ###### [1] Basile, A., De Pascale, F., Bianca, F., Rossi, A., Frizzarin, M., De Bernardini, N., … Campanaro, S. (2021). Large-scale sequencing and comparative analysis of oenological Saccharomyces cerevisiae strains supported by nanopore refinement of key genomes. Food Microbiology, 97, 103753. doi:10.1016/j.fm.2021.103753 
 
-###### [2] Birkeland, S. R., Jin, N., Ozdemir, A. C., Lyons, R. H., Jr, Weisman, L. S., & Wilson, T. E. (2010). Discovery of mutations in Saccharomyces cerevisiae by pooled linkage analysis and whole-genome sequencing. Genetics, 186(4), 1127–1137. https://doi.org/10.1534/genetics.110.123232
+###### [2] Birkeland, S. R., Jin, N., Ozdemir, A. C., Lyons, R. H., Jr, Weisman, L. S., & Wilson, T. E. (2010). Discovery of mutations in Saccharomyces cerevisiae by pooled linkage analysis and whole-genome sequencing. Genetics, 186(4), 1127–1137. doi.org/10.1534/genetics.110.123232
 
