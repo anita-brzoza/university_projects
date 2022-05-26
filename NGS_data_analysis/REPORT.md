@@ -47,19 +47,25 @@ Quality control also noted the presence of illumina universal adaptors, as shown
 
 ![Chart of adapter content](data/report_images/fastqc_adapter_content_plot.png)
 
-Given the above information, only the adapter sequences were removed using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) (version 0.39) because the average quality of the sequences was satisfactory. A summary quality report after filtering can be found in [data](data/) directory as [multiqc-report2.html](data/multiqc_report2.html)
+Given the above information, only the adapter sequences were removed using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) (version 0.39) because the average quality of the sequences was satisfactory. A summary quality report after filtering can be found in [data](data/) directory as [multiqc-report2.html](data/multiqc_report2.html). 
 
 The code used for this step of the analysis can be found in the [src](src/) directory as [quality_control.sh](src/quality_control.sh) and [filtering.sh](src/filtering.sh).
 
 ### Mapping to the reference genome
 
+
+
 The code used for this step of the analysis can be found in the [src](src/) directory as
 
 ### Detection and annotation of SNPs
 
+
+
 The code used for this step of the analysis can be found in the [src](src/) directory as
 
 ### Conclusions
+
+
 
 ### References
 
