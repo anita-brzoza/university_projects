@@ -20,13 +20,44 @@ In this study, the analysis will focus on the detection of single nucleotide pol
 
 ### Data downloading 
 
-The first step of the analysis was to download raw paired-end sequences assigned to SRA study number SRP003355. To do this, the identification numbers of the data files containing the raw sequences were retrieved by creating accession lists using the functions available in Entrez Direct. The first 1,000,000 sequences from each run were then downloaded using fastq-dump and the reads were separated into separate files. The code used for this can be found in the [data_downloading.sh](src/data_downloading.sh) script.
+The first step was to download raw paired-end sequences assigned to SRA study number SRP003355. To do this, the identification numbers of the data files containing the raw sequences were retrieved by creating accession lists using the functions available in [Entrez Direct](https://www.ncbi.nlm.nih.gov/books/NBK179288/) (using commands such as: 1) esearch - to find the SRA study, 2) efetch - to display the resulting data in xml format, 3) xtract - to extract the run numbers). Then the first 1,000,000 sequences from each run were  downloaded using fastq-dump (version 2.11.0) from [SRA tools](https://github.com/ncbi/sra-tools/wiki) and the reads were separated into separate files. 
+
+The code used for this step of the analysis can be found in the [src](src/) directory as [data_downloading.sh](src/data_downloading.sh).
+
+The table below shows which organism is included in the sample.
+
+| Run ID | _S. cerevisiae_ strain |
+| -- | --|
+| SRR064545 | vac6 wild type |
+| SRR064546 | vac6 mutant |
+| SRR064547 | vac22 wild type |
+
 
 ### Quality control and filtering
 
+In the next step, quality control of the extracted sequences was done using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (version 0.11.9). A summary report of the obtained results was also prepared using [MultiQC](https://multiqc.info/) (version 1.12), which in [data](data/) directory as [multiqc-report1.html](data/multiqc_report1.html). 
+
+The sequences obtained were from Illumina 1.9 sequencing, with read lengths of 36 bp (the exception being reverse reads of the wild-type _S. cerevisiae_ vac22 strain, which were 42 bp long). The percentage of GC pairs in the _S. cerevisiae_ vac6 strain was 39%, while in the vac22 strain it was 40-41%. The lowest mean sequence quality per base was about 22 and the highest about 32. Reads for the vac6 strain showed lower mean read quality than for the vac22 strain. The chart of average quality of readings per base is shown below. 
+
+![Chart of average quality of readings per base](data/report_images/fastqc_per_base_sequence_quality_plot.png)
+
+The highest sequence quality recorded was 34 (for 4 reads from file SRR064547_1) and the lowest was 0 (for 60 reads from file SRR064547_2 and 1,357 reads from file SRR064546_2).
+
+Quality control also noted the presence of illumina universal adaptors, as shown in the graph below. The adapters appeared in samples SRR064545_1, SRR064546_2, SRR064547_1, and SRR064547_2.
+
+![Chart of adapter content](data/report_images/fastqc_adapter_content_plot.png)
+
+Given the above information, only the adapter sequences were removed using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) (version 0.39) because the average quality of the sequences was satisfactory. A summary quality report after filtering can be found in [data](data/) directory as [multiqc-report2.html](data/multiqc_report2.html)
+
+The code used for this step of the analysis can be found in the [src](src/) directory as [quality_control.sh](src/quality_control.sh) and [filtering.sh](src/filtering.sh).
+
 ### Mapping to the reference genome
 
+The code used for this step of the analysis can be found in the [src](src/) directory as
+
 ### Detection and annotation of SNPs
+
+The code used for this step of the analysis can be found in the [src](src/) directory as
 
 ### Conclusions
 
