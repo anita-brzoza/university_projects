@@ -20,7 +20,7 @@ In this study, the analysis will focus on the detection of single nucleotide pol
 
 ### Data downloading 
 
-
+The first step of the analysis was to download raw paired-end sequences assigned to SRA study number SRP003355. To do this, the identification numbers of the data files containing the raw sequences were retrieved by creating accession lists using the functions available in Entrez Direct. The first 1,000,000 sequences from each run were then downloaded using fastq-dump and the reads were separated into separate files. The code used for this can be found in the [data_downloading.sh](src/data_downloading.sh) script.
 
 ### Quality control and filtering
 
