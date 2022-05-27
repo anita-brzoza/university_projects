@@ -26,7 +26,7 @@ for file in 5 6 7
             ../raw_data/$srr_number$file$forward$fastq ../raw_data/$srr_number$file$reverse$fastq \
             ./$paired$srr_number$file$forward$fastq ./$unpaired$srr_number$file$forward$fastq \
             ./$paired$srr_number$file$reverse$fastq ./$unpaired$srr_number$file$reverse$fastq \
-            ILLUMINACLIP:/home/abrzoza/miniconda3/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/adapters/TruSeq3-PE.fa:2:15:5
+            ILLUMINACLIP:/home/abrzoza/miniconda3/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/adapters/TruSeq3-PE-2.fa:2:10:3
         
     done
 
