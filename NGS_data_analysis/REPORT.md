@@ -27,7 +27,7 @@ The code used for this step of the analysis can be found in the [src](src/) dire
 The table below shows which organism is included in the sample.
 
 | Run ID | _S. cerevisiae_ strain |
-| -- | --|
+| :--- | :--- | 
 | SRR064545 | vac6 wild type |
 | SRR064546 | vac6 mutant |
 | SRR064547 | vac22 wild type |
@@ -43,7 +43,7 @@ The sequences obtained were from Illumina 1.9 sequencing, with read lengths of 3
 
 The highest sequence quality recorded was 34 (for 4 reads from file SRR064547_1) and the lowest was 0 (for 60 reads from file SRR064547_2 and 1,357 reads from file SRR064546_2).
 
-Quality control also noted the presence of illumina universal adaptors, as shown in the graph below. The adapters appeared in samples SRR064545_1, SRR064546_2, SRR064547_1, and SRR064547_2.
+Quality control also noted the presence of Illumina Universal Adaptors, as shown in the graph below. The adapters appeared in samples SRR064545_1, SRR064546_2, SRR064547_1, and SRR064547_2.
 
 ![Chart of adapter content](data/report_images/fastqc_adapter_content_plot.png)
 
@@ -53,9 +53,30 @@ The code used for this step of the analysis can be found in the [src](src/) dire
 
 ### Mapping to the reference genome
 
+The reference genome with annotation (version R64) was downloaded from the [National Center for Biotechnology Information Genome](https://www.ncbi.nlm.nih.gov/genome/?term=Saccharomyces%20cerevisiae). Next, using the [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) program the reference genome index was created and then the sequences from the samples were mapped to the reference genome, creating BAM files at once using [SAMTOOLS](http://www.htslib.org/). A summary of the mapping is shown in the table below.
+
+|  | SRR064545 | SRR064546 | SRR064547 |
+| :--- | :--- | :--- | :---|
+| Reads | 996558 | 992531 | 999937 |
+| Paired reads | 996558 (100%) | 992531 (100%) | 999937 (100%) |
+| Reads aligned concordantly 0 times | 317985 (31.91%) | 619071 (62.37%) | 988404 (98.85%) |
+| Reads aligned concordantly exactly 1 time | 584576 (58.66%) | 305931 (30.82%) | 9230 (0.92%) |
+| Reads aligned concordantly >1 times | 93997 (9.43%) | 67529 (6.80%) | 2303 (0.23%) |
+| | | | |
+| Pairs aligned concordantly 0 times | 317985 | 619071 | 988404 |
+| Pairs aligned discordantly 1 time | 160537 (50.49%) | 318043 (51.37%) | 558299 (56.48%) |
+| | | | |
+| Pairs aligned 0 times concordantly or discordantly | 157448 | 301028 | 430105 |
+| Mates make up the pairs | 314896 | 602056 | 860210 |
+| Mates make up the pairs aligned 0 times | 126907 (40.30%) | 201062 (33.40%) | 318600 (37.04%) |
+| Mates make up the pairs aligned exactly 1 time | 97826 (31.07%) | 174937 (29.06%) | 234035 (27.21%) |
+| Mates make up the pairs aligned >1 times | 90163 (17.63%) | 226057 (37.55%) | 307575 (35.76%) |
+| | | | |
+| Overall alignment rate | 93.63% | 89.87% | 84.07%|
 
 
-The code used for this step of the analysis can be found in the [src](src/) directory as
+
+The code used for this step of the analysis can be found in the [src](src/) directory as [downloading_reference_genome.sh](src/downloading_reference_genome.sh), [mapping_to_reference.sh](src/mapping_to_reference.sh).
 
 ### Detection and annotation of SNPs
 
