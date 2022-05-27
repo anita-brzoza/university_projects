@@ -2,19 +2,25 @@
 
 #================================================================================
 #
-# The script contains commands to download reference genome from Saccharomyces
-# Genome Database.
+# The script contains commands to download reference genome with annotation from 
+# NCBI Genome.
 #
 #================================================================================
 
 echo "Downloading reference genome..."
-wget -q http://sgd-archive.yeastgenome.org/sequence/S288C_reference/genome_releases/S288C_reference_genome_Current_Release.tgz -O ./reference_genome.tgz || { handle ; error ; }
+wget -q https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz -O ./reference_genome.fna.gz || { handle ; error ; }
 if [ "$?" != 0 ]; then
     echo -e "The file was not downloaded.\nError code: ${?}.\nCheck it out at https://www.gnu.org/software/wget/manual/html_node/Exit-Status.html"
     exit 
 else
     echo -e "File has been downloaded successfully."
-    echo "Extracting files..."
-    tar zxvf reference_genome.tgz
 fi
 
+echo "Downloading annotation..."
+wget -q https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz -O ./reference_genome.gff.gz || { handle ; error ; }
+if [ "$?" != 0 ]; then
+    echo -e "The file was not downloaded.\nError code: ${?}.\nCheck it out at https://www.gnu.org/software/wget/manual/html_node/Exit-Status.html"
+    exit 
+else
+    echo -e "File has been downloaded successfully."
+fi
