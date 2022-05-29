@@ -8,6 +8,8 @@
 #
 #================================================================================
 
+set -e
+
 echo -e "\nGenerating separate quality control reports on samples ==========================\n"
 fastqc ../raw_data/*.fastq -o .
 
