@@ -9,7 +9,7 @@
 #================================================================================
 
 set -e
-
+coverage_output="_coverage.txt"
 for file in 5 6 7
     do
         echo "Sorting bam files for SRR06454${file}"
@@ -35,5 +35,5 @@ for file in 5 6 7
         samtools index SRR06454$file.sorted.rg.md.bam
         
         echo -e "\nCalculate read depth for SRR06454${file}"
-        samtools depth SRR06454$file.sorted.rg.md.bam -o SRR06454$file.txt
+        samtools coverage SRR06454$file.sorted.rg.md.bam -o SRR06454$file$coverage_output
     done
