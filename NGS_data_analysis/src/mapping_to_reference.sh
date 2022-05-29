@@ -8,9 +8,10 @@
 #
 #================================================================================
 
+set -e
+
 echo "Indexing reference genome..."
 bowtie2-build ./reference_genome.fna ./index/index
-
 
 forward="_1"
 reverse="_2"
