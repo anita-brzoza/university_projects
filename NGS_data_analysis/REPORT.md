@@ -18,6 +18,8 @@ _Saccharomyces cerevisiae_ was the first eukaryote whose genome was sequenced in
 
 In this study, the analysis will focus on the detection of single nucleotide polymorphisms in vac6 (wild type and mutant with impaired vacuole inheritance) and vac22 (wild type) _Saccharomyces cerevisiae_ strains. The data used are from the SRA study number [SRP003355](https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP003355) published on 2010-10-12 in the [National Center for Biotechnology Information Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra/) [(2)](#2-birkeland-s-r-jin-n-ozdemir-a-c-lyons-r-h-jr-weisman-l-s-wilson-t-e-2010-discovery-of-mutations-in-saccharomyces-cerevisiae-by-pooled-linkage-analysis-and-whole-genome-sequencing-genetics-1864-11271137-doiorg101534genetics110123232).
 
+[Back to table of contents](#table-of-contents).
+
 ### Data downloading 
 
 The first step was to download raw paired-end sequences assigned to SRA study number SRP003355. To do this, the identification numbers of the data files containing the raw sequences were retrieved by creating accession lists using the functions available in [Entrez Direct](https://www.ncbi.nlm.nih.gov/books/NBK179288/) (using commands such as: 1) esearch - to find the SRA study, 2) efetch - to display the resulting data in xml format, 3) xtract - to extract the run numbers). Then the first 1,000,000 sequences from each run were  downloaded using fastq-dump (version 2.11.0) from [SRA tools](https://github.com/ncbi/sra-tools/wiki) and the reads were separated into separate files. 
@@ -32,6 +34,7 @@ The table below shows which organism is included in the sample.
 | SRR064546 | vac6 mutant |
 | SRR064547 | vac22 wild type |
 
+[Back to table of contents](#table-of-contents).
 
 ### Quality control and filtering
 
@@ -51,9 +54,13 @@ Given the above information, only the adapter sequences were removed using [Trim
 
 The code used for this step of the analysis can be found in the [src](src/) directory as [quality_control.sh](src/quality_control.sh) and [filtering.sh](src/filtering.sh).
 
+[Back to table of contents](#table-of-contents).
+
 ### Mapping to the reference genome
 
-The reference genome with annotation (version R64) was downloaded from the [National Center for Biotechnology Information Genome](https://www.ncbi.nlm.nih.gov/genome/?term=Saccharomyces%20cerevisiae). Next, using the [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) program the reference genome index was created and then the sequences from the samples were mapped to the reference genome, creating BAM files at once using [SAMTOOLS](http://www.htslib.org/). A summary of the mapping is shown in the table below.
+The reference genome with annotation (version R64) was downloaded from the [National Center for Biotechnology Information Genome](https://www.ncbi.nlm.nih.gov/genome/?term=Saccharomyces%20cerevisiae). 
+
+Next, using [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) (version 2.3.5.1) the reference genome index was created and then the sequences from the samples were mapped to the reference genome, creating BAM files at once using [SAMTOOLS](http://www.htslib.org/) (version 1.10). A summary of the mapping is shown in the table below.
 
 |  | SRR064545 | SRR064546 | SRR064547 |
 | :--- | :--- | :--- | :---|
@@ -74,9 +81,11 @@ The reference genome with annotation (version R64) was downloaded from the [Nati
 | | | | |
 | Overall alignment rate | 93.63% | 89.87% | 84.07%|
 
+In the next step, bam files were improved. To do so, bam files were sorted using [SAMTOOLS](http://www.htslib.org/), reads were added to individual read-groups, and duplicates were marked using Picard (version 2.27.1, available from [The Genome Analysis Toolkit (GATK)](https://gatk.broadinstitute.org/hc/en-us) version 4.2.6.1), then bam files were indexed and read depth was calculated for each bam file using [SAMTOOLS](http://www.htslib.org/). The output files can be found in [data](data/) directory as [SRR064545_coverage.txt](data/SRR064545_coverage.txt), [SRR064546_coverage.txt](data/SRR064546_coverage.txt) and [SRR064547_coverage.txt](data/SRR064547_coverage.txt).
 
+The code used for this step of the analysis can be found in the [src](src/) directory as [downloading_reference_genome.sh](src/downloading_reference_genome.sh), [mapping_to_reference.sh](src/mapping_to_reference.sh), [improving_bam_files.sh](src/improving_bam_files.sh).
 
-The code used for this step of the analysis can be found in the [src](src/) directory as [downloading_reference_genome.sh](src/downloading_reference_genome.sh), [mapping_to_reference.sh](src/mapping_to_reference.sh).
+[Back to table of contents](#table-of-contents).
 
 ### Detection and annotation of SNPs
 
@@ -84,9 +93,12 @@ The code used for this step of the analysis can be found in the [src](src/) dire
 
 The code used for this step of the analysis can be found in the [src](src/) directory as
 
+[Back to table of contents](#table-of-contents).
+
 ### Conclusions
 
 
+[Back to table of contents](#table-of-contents).
 
 ### References
 
@@ -94,3 +106,4 @@ The code used for this step of the analysis can be found in the [src](src/) dire
 
 ###### [2] Birkeland, S. R., Jin, N., Ozdemir, A. C., Lyons, R. H., Jr, Weisman, L. S., Wilson, T. E. (2010). Discovery of mutations in Saccharomyces cerevisiae by pooled linkage analysis and whole-genome sequencing. Genetics, 186(4), 1127–1137. doi.org/10.1534/genetics.110.123232
 
+[Back to table of contents](#table-of-contents). 
