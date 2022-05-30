@@ -7,7 +7,7 @@ Author: Anita Brzoza
   - [Data downloading](#data-downloading)
   - [Quality control and filtering](#quality-control-and-filtering)
   - [Mapping to the reference genome](#mapping-to-the-reference-genome)
-  - [Detection and annotation of SNPs](#detection-and-annotation-of-snps)
+  - [Detection, filtration and annotation of SNPs](#detection-filtration-and-annotation-of-snps)
   - [Conclusions](#conclusions)
   - [References](#references)
 
@@ -52,7 +52,7 @@ Quality control also noted the presence of Illumina Universal Adaptors, as shown
 
 Given the above information, only the adapter sequences were removed using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) (version 0.39) because the average quality of the sequences was satisfactory. A summary quality report after filtering can be found in [data](data/) directory as [multiqc-report2.html](data/multiqc_report2.html). 
 
-The code used for this step of the analysis can be found in the [src](src/) directory as [quality_control.sh](src/quality_control.sh) and [filtering.sh](src/filtering.sh).
+The code used for this step of the analysis can be found in the [src](src/) directory as 1) [quality_control.sh](src/quality_control.sh) and 2) [filtering.sh](src/filtering.sh).
 
 [Back to table of contents](#table-of-contents).
 
@@ -81,17 +81,24 @@ Next, using [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) (ve
 | | | | |
 | Overall alignment rate | 93.63% | 89.87% | 84.07%|
 
-In the next step, bam files were improved. To do so, bam files were sorted using [SAMTOOLS](http://www.htslib.org/), reads were added to individual read-groups, and duplicates were marked using Picard (version 2.27.1, available from [The Genome Analysis Toolkit (GATK)](https://gatk.broadinstitute.org/hc/en-us) version 4.2.6.1), then bam files were indexed and read depth was calculated for each bam file using [SAMTOOLS](http://www.htslib.org/). The output files can be found in [data](data/) directory as [SRR064545_coverage.txt](data/SRR064545_coverage.txt), [SRR064546_coverage.txt](data/SRR064546_coverage.txt) and [SRR064547_coverage.txt](data/SRR064547_coverage.txt).
+In the next step, bam files were improved. To do it, bam files were sorted using [SAMTOOLS](http://www.htslib.org/), reads were added to individual read-groups, and duplicates were marked using Picard (version 2.27.1, available from [The Genome Analysis Toolkit (GATK)](https://gatk.broadinstitute.org/hc/en-us) version 4.2.6.1), then bam files were indexed and read depth was calculated for each bam file using [SAMTOOLS](http://www.htslib.org/). The output files can be found in [data](data/) directory as [SRR064545_coverage.txt](data/SRR064545_coverage.txt), [SRR064546_coverage.txt](data/SRR064546_coverage.txt) and [SRR064547_coverage.txt](data/SRR064547_coverage.txt).
 
-The code used for this step of the analysis can be found in the [src](src/) directory as [downloading_reference_genome.sh](src/downloading_reference_genome.sh), [mapping_to_reference.sh](src/mapping_to_reference.sh), [improving_bam_files.sh](src/improving_bam_files.sh).
+The code used for this step of the analysis can be found in the [src](src/) directory as 1) [downloading_reference_genome.sh](src/downloading_reference_genome.sh), 2) [mapping_to_reference.sh](src/mapping_to_reference.sh), 3) [improving_bam_files.sh](src/improving_bam_files.sh).
 
 [Back to table of contents](#table-of-contents).
 
-### Detection and annotation of SNPs
+### Detection, filtration and annotation of SNPs
+
+First, a reference genome file was prepared by creating the FASTA sequence dictionary file using [GATK]((https://gatk.broadinstitute.org/hc/en-us)) and creating fasta index file using [SAMTOOLS](http://www.htslib.org/). 
+
+Then using GATK polymorphisms were detected, VCF files were merged into one and genotyped. Only single nucleotide polymorphisms were selected. The output CVF file can be found in [data](data/) directory as [SNP.vcf](data/SNP.vcf). 6311 SNPs Variants were detected.
+
+In the next step, annotation was added to the vcf file using the [bioinfokit library](https://github.com/reneshbedre/bioinfokit) (version 2.0.8) for python 3.8.6. 
+
+The file was then filtered to get rid of variants with an overall quality of less than 30 and a depth of less than 10 - using [SnpSift](http://pcingola.github.io/SnpEff/) (version 5.1d). 3113 variants were received. In the next step, using the R (version 4.1.3) variants were filtered from positions characterized by a lack of information regarding the location in the genome and a lack of inforamation regarding the transcript ID.
 
 
-
-The code used for this step of the analysis can be found in the [src](src/) directory as
+The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [annotating.py](src/annotating.py) 4) [filtering_SNP.sh](src/filtering_SNP.sh) and [R_filtering_SNP.R](src/R_filtering_SNP.R).
 
 [Back to table of contents](#table-of-contents).
 
