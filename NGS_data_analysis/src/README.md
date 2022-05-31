@@ -1,1 +1,11 @@
 This folder contains scripts used during the analysis.
+* [data_downloading.sh](data_downloading.sh)
+* [quality_control.sh](quality_control.sh)
+* [filtering.sh](filtering.sh)
+* [downloading_reference_genome.sh](downloading_reference_genome.sh)
+* [mapping_to_reference.sh](mapping_to_reference.sh)
+* [improving_bam_files.sh](improving_bam_files.sh)
+* [preparing_reference_genome.sh](preparing_reference_genome.sh)
+* [detecting_snp.sh](detecting_snp.sh)
+* [filtering_SNP.sh](filtering_SNP.sh)
+* [annotation.R](annotation.R)
