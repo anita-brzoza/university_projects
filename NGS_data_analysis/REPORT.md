@@ -8,7 +8,7 @@ Author: Anita Brzoza
   - [Quality control and filtering](#quality-control-and-filtering)
   - [Mapping to the reference genome](#mapping-to-the-reference-genome)
   - [Detection, filtration and annotation of SNPs](#detection-filtration-and-annotation-of-snps)
-  - [Conclusions](#conclusions)
+  - [Comparative analysis of samples](#comparative-analysis-of-samples)
   - [References](#references)
 
 
@@ -91,18 +91,15 @@ The code used for this step of the analysis can be found in the [src](src/) dire
 
 First, a reference genome file was prepared by creating the FASTA sequence dictionary file using [GATK]((https://gatk.broadinstitute.org/hc/en-us)) and creating fasta index file using [SAMTOOLS](http://www.htslib.org/). 
 
-Then using GATK polymorphisms were detected, VCF files were merged into one and genotyped. Only single nucleotide polymorphisms were selected. The output CVF file can be found in [data](data/) directory as [SNP.vcf](data/SNP.vcf). 6311 SNPs Variants were detected.
+Then using GATK polymorphisms were detected, VCF files were merged into one and genotyped. Only single nucleotide polymorphisms were selected. The output CVF file can be found in [data](data/) directory as [SNP.vcf](data/SNP.vcf). 6311 SNPs Variants were detected. The variants were then filtered for missing data, indels, depth, quality values using [VCFtools](http://vcftools.sourceforge.net/index.html) (version 0.1.16). 58 variants located on chromosome 12 and mitochondial genome were obtained. Deleted SNPs derived from the mitochondrial genome and there are 8 variants left. The output CVF file can be found in [data](data/) directory as [NC_001144.5.recode.vcf](data/NC_001144.5.recode.vcf).
 
-In the next step, annotation was added to the vcf file using the [bioinfokit library](https://github.com/reneshbedre/bioinfokit) (version 2.0.8) for python 3.8.6. 
+The annotation was made using using [VariantAnnotation] (version 1.40.0) and [GenomicFeatures] (version 1.46.1) for R (version 4.1.3). The output was saved to [annotated_SNP.txt] for further analysis.
 
-The file was then filtered to get rid of variants with an overall quality of less than 30 and a depth of less than 10 - using [SnpSift](http://pcingola.github.io/SnpEff/) (version 5.1d). 3113 variants were received. In the next step, using the R (version 4.1.3) variants were filtered from positions characterized by a lack of information regarding the location in the genome and a lack of inforamation regarding the transcript ID.
-
-
-The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [annotating.py](src/annotating.py) 4) [filtering_SNP.sh](src/filtering_SNP.sh) and [R_filtering_SNP.R](src/R_filtering_SNP.R).
+The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [filtering_SNP.sh](src/filtering_SNP.sh) and [annotation.R](src/annotation.R).
 
 [Back to table of contents](#table-of-contents).
 
-### Conclusions
+### Comparative analysis of samples
 
 
 [Back to table of contents](#table-of-contents).
