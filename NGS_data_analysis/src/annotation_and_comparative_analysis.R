@@ -9,12 +9,11 @@
 ## Libraries
 library(VariantAnnotation)
 library(GenomicFeatures)
-library(ggplot2)
 
 ## annotating SNP ==============================================================
 ## Geting data
-vcf <- readVcf("D:/github/university_projects/NGS_data_analysis/data/NC_001144.5.recode.vcf")
-annotation_info <- makeTxDbFromGFF("C:/Users/pourp/OneDrive/Pulpit/annotation.gff")
+vcf <- readVcf("./NC_001144.5.recode.vcf")
+annotation_info <- makeTxDbFromGFF("./annotation.gff")
 
 # Annotating
 annotated_variants <- locateVariants(vcf, annotation_info, AllVariants())
