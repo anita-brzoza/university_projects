@@ -93,7 +93,7 @@ First, a reference genome file was prepared by creating the FASTA sequence dicti
 
 Then using GATK polymorphisms were detected, VCF files were merged into one and genotyped. Only single nucleotide polymorphisms were selected. The output CVF file can be found in [data](data/) directory as [SNP.vcf](data/SNP.vcf). 6311 SNPs Variants were detected. The variants were then filtered for missing data, indels, depth, quality values using [VCFtools](http://vcftools.sourceforge.net/index.html) (version 0.1.16). 58 variants located on chromosome 12 and mitochondial genome were obtained. Deleted SNPs derived from the mitochondrial genome and there are 8 variants left. The output CVF file can be found in [data](data/) directory as [NC_001144.5.recode.vcf](data/NC_001144.5.recode.vcf).
 
-The annotation was made using using [VariantAnnotation] (version 1.40.0) and [GenomicFeatures] (version 1.46.1) for R (version 4.1.3). The output was saved to [annotated_SNP.txt] for further analysis.
+The annotation was made using using [VariantAnnotation] (version 1.40.0) and [GenomicFeatures] (version 1.46.1) for R (version 4.1.3). The output was saved to [annotated_SNP.txt](data/annotated_SNP.txt) for further analysis.
 
 The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [filtering_SNP.sh](src/filtering_SNP.sh) and [annotation.R](src/annotation.R).
 
