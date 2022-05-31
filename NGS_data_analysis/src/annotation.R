@@ -11,8 +11,8 @@ library(GenomicFeatures)
 
 
 ## Geting data
-vcf <- readVcf("C:/Users/pourp/OneDrive/Pulpit/NC_001144.5.recode.vcf")
-annotation_info <- makeTxDbFromGFF("C:/Users/pourp/OneDrive/Pulpit/annotation.gff")
+vcf <- readVcf("./NC_001144.5.recode.vcf")
+annotation_info <- makeTxDbFromGFF("./annotation.gff")
 
 # Annotating
 intersect(seqlevels(vcf), seqlevels(annotation_info))
