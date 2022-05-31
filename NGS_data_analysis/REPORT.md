@@ -93,14 +93,54 @@ First, a reference genome file was prepared by creating the FASTA sequence dicti
 
 Then using GATK polymorphisms were detected, VCF files were merged into one and genotyped. Only single nucleotide polymorphisms were selected. The output CVF file can be found in [data](data/) directory as [SNP.vcf](data/SNP.vcf). 6311 SNPs Variants were detected. The variants were then filtered for missing data, indels, depth, quality values using [VCFtools](http://vcftools.sourceforge.net/index.html) (version 0.1.16). 58 variants located on chromosome 12 and mitochondial genome were obtained. Deleted SNPs derived from the mitochondrial genome and there are 8 variants left. The output CVF file can be found in [data](data/) directory as [NC_001144.5.recode.vcf](data/NC_001144.5.recode.vcf).
 
-The annotation was made using using [VariantAnnotation] (version 1.40.0) and [GenomicFeatures] (version 1.46.1) for R (version 4.1.3). The output was saved to [annotated_SNP.txt](data/annotated_SNP.txt) for further analysis.
+The annotation was made using [VariantAnnotation] (version 1.40.0) and [GenomicFeatures] (version 1.46.1) for R (version 4.1.3). 
 
-The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [filtering_SNP.sh](src/filtering_SNP.sh) and [annotation.R](src/annotation.R).
+The code used for this step of the analysis can be found in the [src](src/) directory as 1) [preparing_reference_genome.sh](src/preparing_reference_genome.sh), 2) [detecting_snp.sh](src/detecting_snp.sh), 3) [filtering_SNP.sh](src/filtering_SNP.sh) and [annotation_and_comparative_analysis.R](src/annotation_and_comparative_analysis.R).
 
 [Back to table of contents](#table-of-contents).
 
 ### Comparative analysis of samples
 
+The detected genotypes are shown in the table below. As can be seen, the detected SNP variants were reference for the S. cerevisiae vac 22 wild-type strain, in contrast to the vac 6 strain in which they occurred as heterozygotes. 
+
+| SNP | SRR064545 | SRR064546 | SRR064547 |
+| :--- | :--- | :--- | :--- |
+| NC_001144.5:460070_A/C | 0/1 | 0/1 | 0/0 |
+| NC_001144.5:460103_T/C | 0/1 | 0/1 | 0/0 |
+| NC_001144.5:460152_T/G | 0\|1 | 0\|1 | 0/0 |
+| NC_001144.5:460162_T/C | 0\|1 | 0\|1 | 0/0 |
+| NC_001144.5:460248_T/C | 0\|1 | 0/1 | 0/0 |
+| NC_001144.5:460329_T/C | 0/1 | 0/1 | 0/0 |
+| NC_001144.5:460549_C/A | 0/1 | 0/1 | 0/0 |
+| NC_001144.5:460640_T/C | 0/1 | 0/1 | 0/0 | 
+
+Variants are located in the promoter region of the transcript and in the intergenic region. As shown in the table below, most of the annotated options are located in the promoter region. Promoter regions involved regions of genes such as RDN37-1 (this is a 35S ribosomal RNA (35S rRNA) transcript. It is encoded by the RDN1 locus and processed into 25S, 18S and 5.8S rRNA (represented by the RDN25, RDN18 and RDN58 loci)) and ETS1-1 (A non-coding region located immediately upstream of RDN18. This region is transcribed as part of the 35S rRNA precursor transcript and contains the essential U3 snoRNA binding site required for 18S rRNA maturation). 
+
+|Chromosome | Position | Genome region | Gene ID |
+| :--- | :--- | :--- | :--- |
+| NC_001144.5 | 460070 | promoter | RDN37-1 |
+| NC_001144.5 | 460070 | promoter | ETS1-1 |
+| NC_001144.5 | 460070 | intergenic | - |
+| NC_001144.5 | 460103 | promoter | RDN37-1 |
+| NC_001144.5 | 460103 | promoter | ETS1-1 |
+| NC_001144.5 | 460103 | intergenic | - |
+| NC_001144.5 | 460152 | promoter | RDN37-1 |
+| NC_001144.5 | 460152 | promoter | ETS1-1 |
+| NC_001144.5 | 460152 | intergenic | - |
+| NC_001144.5 | 460162 | promoter | RDN37-1 |
+| NC_001144.5 | 460162 | promoter | ETS1-1 |
+| NC_001144.5 | 460162 | intergenic | - |
+| NC_001144.5 | 460248 | promoter | RDN37-1 |
+| NC_001144.5 | 460248 | promoter | ETS1-1 |
+| NC_001144.5 | 460248 | intergenic | - |
+| NC_001144.5 | 460329 | promoter | RDN37-1 |
+| NC_001144.5 | 460329 | promoter | ETS1-1 |
+| NC_001144.5 | 460329 | intergenic | - |
+| NC_001144.5 | 460549 | intergenic | - |
+| NC_001144.5 | 460640 | intergenic | - |
+
+
+The code used for this step of the analysis can be found in the [src](src/) directory as [annotation_and_comparative_analysis.R](src/annotation_and_comparative_analysis.R).
 
 [Back to table of contents](#table-of-contents).
 
